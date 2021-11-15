@@ -1,0 +1,21 @@
+{
+  "watch": "src",
+  "ext": "ts js json",
+  "name": "Desarrollo",
+  "env": {
+    "NODE_APP_ENCODER": "mysecretjwt",
+    "SECRET_SALT": 12,
+
+    "NODE_DB_HOST": "127.0.0.1",
+    "NODE_DB_USER": "YOUR_USER",
+    "NODE_DB_PASS": "YOUR_PASS",
+    "NODE_DB_PORT": "3307",
+    "NODE_DB_DATABASE": "MY_DATABASE",
+    "NODE_PORT": 3000
+  },
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "exec": "ts-node-dev --cls ./src/index.ts"
+}

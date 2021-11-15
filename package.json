@@ -1,0 +1,54 @@
+{
+  "name": "ProjectTemplate",
+  "version": "1.0.0",
+  "description": "Your description proyect",
+  "author": "https://www.linkedin.com/in/mozzarth/",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -L",
+    "start": "npm run build && node dist/index.js",
+    "start:pm2": "npm run build && pm2 start ecosystem.config.js",
+    "start:pm2:prb": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrb",
+    "start:pm2:prd": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrd",
+    "build": "npm run build:tsc",
+    "build:clean": "rm -r dist; exit 0",
+    "build:tsc": "tsc -p tsconfig.prod.json",
+    "build:cp": "copy 'src/**/*.{json,yaml,html,png}' dist/src"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3-rc.0",
+    "rm": "^0.1.8",
+    "typescript": "^4.4.4",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^15.6.0",
+    "@types/uuid": "^8.3.1",
+    "copy": "^0.3.2",
+    "cross-env": "^7.0.3",
+    "husky": "^6.0.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
+    "ts-node-dev": "^1.1.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
