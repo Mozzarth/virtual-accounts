@@ -4,7 +4,7 @@
 
 
 create database if not exists streamingPro;
--- use YOUR_USER;
+use streamingPro;
 
 create table if not exists users(
 				   idUser BINARY(16) not null primary key,
