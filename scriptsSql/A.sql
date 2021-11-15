@@ -1,10 +1,5 @@
--- ALTER USER 'YOUR_USER' IDENTIFIED WITH mysql_native_password BY 'YOUR_PASS';
--- FLUSH PRIVILEGES;
-
-
-
-create database if not exists streamingPro;
-use streamingPro;
+create database if not exists StreamingPro;
+use StreamingPro;
 
 create table if not exists users(
 				   idUser BINARY(16) not null primary key,
@@ -22,5 +17,3 @@ create table if not exists users(
                    updateAt datetime null );
 
                    
-GRANT SELECT, INSERT, UPDATE ON streamingPro. * TO 'YOUR_USER'@'%';
-FLUSH PRIVILEGES;

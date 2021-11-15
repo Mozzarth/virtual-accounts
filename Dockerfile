@@ -6,7 +6,7 @@ FROM mysql:8.0.23
 LABEL mail="moisescaicedo15@gmail.com"
 LABEL name="Moises David Caicedo Corena"
 
-ENV MYSQL_USER=YOUR_USER
+ENV MYSQL_USER=uPrueba
 ENV MYSQL_PASSWORD=YOUR_PASS
 ENV MYSQL_DATABASE=StreamingPro
 ENV MYSQL_ROOT_PASSWORD=YOUR_PASS_ROOT

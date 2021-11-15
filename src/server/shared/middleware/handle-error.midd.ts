@@ -8,5 +8,6 @@ export function handleErrorMiddleware(error: Error, req: Request, res: Response,
     console.log(error.name)
     console.log(error.message)
     console.log(error.stack)
+    console.log(error)
     return res.status(500).send(error)
 }
