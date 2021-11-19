@@ -5,6 +5,7 @@ import { IUserFindRepository } from "../../find/domain/user.find";
 import { IUserLoginDTO } from "./dto";
 import { IEncript } from "../../../common/libs/encrypt/IEncrypts";
 import { UserCredentialInvalid } from "../domain/user-invalidcredential.error";
+import { Uuid } from "../../../shared/domain/valueobjects/uuid";
 
 
 
@@ -26,7 +27,8 @@ export class UserAuthentication {
             const validCredential = await this.encrypt.compare(password, user.password)
             if (!validCredential) throw new UserCredentialInvalid()
             const key = await this.decodedKeyAPP.getKey({ id: user.idUser })
-            return key
+            const infoUser = await this.repository.byId(new Uuid(user.idUser))
+            return { key, user: infoUser}
         } catch (error) {
             throw error
         }
