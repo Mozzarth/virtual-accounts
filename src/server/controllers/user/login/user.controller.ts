@@ -15,7 +15,7 @@ class UserLoginController {
             const { email, password } = req.body
             const params: IUserLoginDTO = { email, password }
             const data = await this.service.handle(params)
-            res.status(200).json({ key: data })
+            res.status(200).json(data)
         } catch (error) {
             next(error)
         }
