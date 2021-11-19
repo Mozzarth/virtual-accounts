@@ -21,7 +21,7 @@ rt.delete("/user/:id", userDeleteMidd(), ctrlDelete.handle.bind(ctrlDelete))
 rt.get("/users", userFindAllMidd(), ctrlFind.all.bind(ctrlFind))
 rt.get("/user/profiles", userProfilesMidd(), ctrlFind.profiles.bind(ctrlFind))
 
-rt.get("/user/email", userFindByEmailMidd(), ctrlFind.byEmail.bind(ctrlFind))
+rt.post("/user/email", userFindByEmailMidd(), ctrlFind.byEmail.bind(ctrlFind))
 rt.get("/user/:id", userFindByIdMidd(), ctrlFind.byId.bind(ctrlFind))
 
 // userAuthentication
