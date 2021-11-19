@@ -19,11 +19,14 @@ export class UserFindMysql implements IUserFindRepository {
             const data = await connection.query(`
                         SELECT
                             BIN_TO_UUID(idUSer) as idUser,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
+                            name,
+                            numberPhone,
+                            observacion,
                             email,
                             password,
                             profile,
                             created,
+                            BIN_TO_UUID(myTopUser) as myTopUser,
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
@@ -45,11 +48,14 @@ export class UserFindMysql implements IUserFindRepository {
             const data = await connection.query(`
                         SELECT
                             BIN_TO_UUID(idUSer) as idUser,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
                             email,
                             password,
+                            name,
+                            numberPhone,
+                            observacion,
                             profile,
                             created,
+                            BIN_TO_UUID(myTopUser) as myTopUser,
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
@@ -69,11 +75,14 @@ export class UserFindMysql implements IUserFindRepository {
             const data = await connection.query<RowDataPacket[][]>(`
                         SELECT
                             BIN_TO_UUID(idUSer) as idUser,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
                             email,
+                            name,
+                            numberPhone,
+                            observacion,
                             password,
                             profile,
                             created,
+                            BIN_TO_UUID(myTopUser) as myTopUser,
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
@@ -93,11 +102,14 @@ export class UserFindMysql implements IUserFindRepository {
             const data = await connection.query<RowDataPacket[][]>(`
                         SELECT
                             BIN_TO_UUID(idUSer) as idUser,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
                             email,
+                            name,
+                            numberPhone,
+                            observacion,
                             password,
                             profile,
                             created,
+                            BIN_TO_UUID(myTopUser) as myTopUser,
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
@@ -116,11 +128,14 @@ export class UserFindMysql implements IUserFindRepository {
         try {
             const data = await connection.query<RowDataPacket[][]>(`SELECT
                             BIN_TO_UUID(idUSer) as idUser,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
                             email,
+                            name,
+                            numberPhone,
+                            observacion,
                             profile,
                             password,
                             created,
+                            BIN_TO_UUID(myTopUser) as myTopUser,
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
