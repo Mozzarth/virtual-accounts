@@ -17,7 +17,7 @@ export class UserFindService {
 
     async byId(key: string, id: string) {
         try {
-            const currentUser = await this.getCurrentUser(key)
+            await this.getCurrentUser(key)
             const uuid = new Uuid(id)
             const user = await this.repository.byId(uuid)
             return user
@@ -27,7 +27,7 @@ export class UserFindService {
     }
     async byEmail(key: string, email: string) {
         try {
-            const currentUser = await this.getCurrentUser(key)
+            await this.getCurrentUser(key)
             const emailAdress = new EmailAddres(email)
             const user = await this.repository.byEmail(emailAdress)
             if (user) {
@@ -43,7 +43,7 @@ export class UserFindService {
     async allUser(key: string) {
         try {
             const currentUser = await this.getCurrentUser(key)
-            if(currentUser.profile == Profiles2.ROOT.codigo) {
+            if (currentUser.profile == Profiles2.ROOT.codigo) {
                 const user = await this.repository.all()
                 return user
             }
@@ -55,7 +55,7 @@ export class UserFindService {
     }
     async profiles(key: string) {
         try {
-            const currentUser = await this.getCurrentUser(key)
+            await this.getCurrentUser(key)
             return Profiles2
         } catch (error) {
             throw error

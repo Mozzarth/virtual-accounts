@@ -1,9 +1,9 @@
-enum Profiles {
-    ROOT, // Root
-    ADMIN, // Administradors
-    DISTRIBUTOR, // Distribuidores 
-    BUYER // Compradores
-}
+// enum Profiles {
+//     ROOT, // Root
+//     ADMIN, // Administradors
+//     DISTRIBUTOR, // Distribuidores 
+//     BUYER // Compradores
+// }
 
 export const Profiles2 = {
     ROOT: {

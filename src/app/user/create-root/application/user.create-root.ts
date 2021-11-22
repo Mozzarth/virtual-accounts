@@ -1,4 +1,4 @@
-import { ErrorUserAlreadyExist, ErrorUserRootAlreadyExist } from "../../create/domain/user-exists.error";
+import { ErrorUserRootAlreadyExist } from "../../create/domain/user-exists.error";
 import { EmailAddres } from "../../../shared/domain/valueobjects/email/emailaddres";
 import { IUserRootCreateRepository } from "../domain/user.create-root";
 import { IEncript } from "../../../common/libs/encrypt/IEncrypts";

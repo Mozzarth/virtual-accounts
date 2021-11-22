@@ -10,7 +10,7 @@
     "start:pm2": "npm run build && pm2 start ecosystem.config.js",
     "start:pm2:prb": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrb",
     "start:pm2:prd": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrd",
-    "build": "npm run build:tsc",
+    "build": "npm run build:tsc && build:cp",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:cp": "copy 'src/**/*.{json,yaml,html,png}' dist/src"
@@ -28,7 +28,8 @@
     "mysql2": "^2.3.3-rc.0",
     "rm": "^0.1.8",
     "typescript": "^4.4.4",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "copy": "^0.3.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -38,7 +39,6 @@
     "@types/morgan": "^1.9.2",
     "@types/node": "^15.6.0",
     "@types/uuid": "^8.3.1",
-    "copy": "^0.3.2",
     "cross-env": "^7.0.3",
     "husky": "^6.0.0",
     "nodemon": "^2.0.7",

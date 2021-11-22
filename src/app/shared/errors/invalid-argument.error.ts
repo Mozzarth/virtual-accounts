@@ -1,8 +1,8 @@
 
 export class ErrorInvalidArgument {
 
-    constructor(private readonly message: string) {
-
+    constructor() {
+        // this.message = message
     }
 
 }
