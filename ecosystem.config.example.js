@@ -18,7 +18,7 @@ module.exports = {
         NODE_PORT: 3000
       },
       script: "index.js",
-      cwd: "./dist/"
+      cwd: "./dist/src/"
     }
   ],
 };

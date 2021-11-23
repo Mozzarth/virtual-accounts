@@ -6,19 +6,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -L",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node dist/src/index.js",
     "start:pm2": "npm run build && pm2 start ecosystem.config.js",
     "start:pm2:prb": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrb",
     "start:pm2:prd": "npm run build && pm2 start ecosystem.config.js --only yourNameAppPrd",
-    "build": "npm run build:tsc && build:cp",
-    "build:clean": "rm -r dist; exit 0",
+    "build": "npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:cp": "copy 'src/**/*.{json,yaml,html,png}' dist/src"
+    "build:di": "copy './src/**/*.{json,yaml,html,png}' dist/src",
+    "build:clean": "rm -r dist; exit 0"
   },
   "keywords": [],
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "copy": "^0.3.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
@@ -27,9 +28,9 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3-rc.0",
     "rm": "^0.1.8",
+    "tslint": "^6.1.3",
     "typescript": "^4.4.4",
-    "uuid": "^8.3.2",
-    "copy": "^0.3.2"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -48,7 +49,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "{src,tests}/**/*.ts": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ]
   }
 }
