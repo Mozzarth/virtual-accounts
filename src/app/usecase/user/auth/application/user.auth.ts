@@ -1,11 +1,11 @@
-import { UserNotExisteError as UserNotExistsError } from "../../shared/user-notexists.error";
+import { NotExisteError as UserNotExistsError } from "../../../../shared/errors/notexists.error";
 import { EmailAddres } from "../../../../shared/domain/valueobjects/email/emailaddres";
+import { UserCredentialInvalid } from "../domain/user-invalidcredential.error";
 import { KeyAppService } from "../../../../shared/guard/application/guard-app";
+import { IEncript } from "../../../../common/libs/encrypt/IEncrypts";
+import { Uuid } from "../../../../shared/domain/valueobjects/uuid";
 import { IUserFindRepository } from "../../find/domain/user.find";
 import { IUserLoginDTO } from "./dto";
-import { IEncript } from "../../../../common/libs/encrypt/IEncrypts";
-import { UserCredentialInvalid } from "../domain/user-invalidcredential.error";
-import { Uuid } from "../../../../shared/domain/valueobjects/uuid";
 
 
 
@@ -23,7 +23,7 @@ export class UserAuthentication {
             const { email, password } = params
             const emailAddres = new EmailAddres(email)
             const user = await this.repository.byEmail(emailAddres)
-            if (user == undefined) throw new UserNotExistsError()
+            if (user == undefined) throw new UserNotExistsError("User not exists")
             const validCredential = await this.encrypt.compare(password, user.password)
             if (!validCredential) throw new UserCredentialInvalid()
             const key = await this.decodedKeyAPP.getKey({ id: user.idUser })

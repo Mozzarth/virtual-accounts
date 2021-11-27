@@ -1,4 +1,4 @@
-import { UserNotExisteError } from "../../../usecase/user/shared/user-notexists.error"
+import { NotExisteError } from "../../errors/notexists.error"
 import { userFindMysql } from "../../../usecase/user/find/repository/user-find.mysql"
 import { IUserFindRepository } from "../../../usecase/user/find/domain/user.find"
 import { EmailAddres } from "../../domain/valueobjects/email/emailaddres"
@@ -23,7 +23,7 @@ export class KeyAppService {
         const payload = await this.provider.decodedKey(key)
         const id = new Uuid(payload.id)
         const user = await this.repository.byId(id)
-        if (user == undefined) throw new UserNotExisteError()
+        if (user == undefined) throw new NotExisteError("User not exists")
         const { name, profile, password, email, numberPhone, observacion, idUser, myTopUser } = user
         const paramsUser = {
             id: new Uuid(idUser), myTopUser: new Uuid(myTopUser), email: new EmailAddres(email),
