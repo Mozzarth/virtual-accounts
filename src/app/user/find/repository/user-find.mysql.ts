@@ -3,7 +3,7 @@ import { connectionMySql } from "../../../shared/persistence/connection.mysql";
 import { SqlConnection } from "../../../shared/persistence/IConnection";
 import { IUserFind, IUserFindRepository } from "../domain/user.find";
 import { Uuid } from "../../../shared/domain/valueobjects/uuid";
-import { Profiles2 } from "../../shared/user.profiles";
+import { Profiles } from "../../shared/user.profiles";
 import { RowDataPacket } from "mysql2/promise";
 import { User } from "../../shared/user";
 
@@ -86,7 +86,7 @@ export class UserFindMysql implements IUserFindRepository {
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
-                        FROM users where profile = ? and active = 1;`, [Profiles2.ROOT.codigo])
+                        FROM users where profile = ? and active = 1;`, [Profiles.ROOT.codigo])
             const result: any = data[0][0]
             return (result as IUserFind | undefined)
             return undefined

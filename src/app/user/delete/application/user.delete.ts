@@ -3,7 +3,7 @@ import { KeyAppService } from "../../../shared/guard/application/guard-app";
 import { IUserFindRepository } from "../../find/domain/user.find";
 import { Uuid } from "../../../shared/domain/valueobjects/uuid";
 import { IUserDeleteRepository } from "../domain/user.create";
-import { Profiles2 } from "../../shared/user.profiles";
+import { Profiles } from "../../shared/user.profiles";
 import { User } from "../../shared/user";
 import { IUserDeleteDTO } from "./dto";
 
@@ -31,7 +31,7 @@ export class UserDeleteService {
         }
     }
     private async permiso(currentUser: User) {
-        if (currentUser.profile == Profiles2.BUYER.codigo) throw new ErrorPermissionDenied()
+        if (currentUser.profile == Profiles.BUYER.codigo) throw new ErrorPermissionDenied()
         return
     }
 

@@ -1,11 +1,4 @@
-// enum Profiles {
-//     ROOT, // Root
-//     ADMIN, // Administradors
-//     DISTRIBUTOR, // Distribuidores 
-//     BUYER // Compradores
-// }
-
-export const Profiles2 = {
+export const Profiles = {
     ROOT: {
         codigo: 1,
         nombre: "Root"
@@ -26,7 +19,7 @@ export const Profiles2 = {
 
 
 export function ProfilesValues() : number[]{   
-    return Object.keys(Profiles2).map((key: string) => (Profiles2 as any)[key].codigo)
+    return Object.keys(Profiles).map((key: string) => (Profiles as any)[key].codigo)
 }
 export function ProfilesValid(profile: number) {
     const arrvalues = ProfilesValues()

@@ -5,7 +5,7 @@ import { IEncript } from "../../../common/libs/encrypt/IEncrypts";
 import { IUserFindRepository } from "../../find/domain/user.find";
 import { IPayloadAPP } from "../../../shared/domain/IPayloadAPP";
 import { Uuid } from "../../../shared/domain/valueobjects/uuid";
-import { Profiles2 } from "../../shared/user.profiles";
+import { Profiles } from "../../shared/user.profiles";
 import { IUserRootCreateDTO } from "./dto";
 import { User } from "../../shared/user";
 
@@ -42,7 +42,7 @@ export class UserRootCreateService {
             // if (userFind != undefined) throw new ErrorUserAlreadyExist()
 
             const id = Uuid.random()
-            const user = new User({ myTopUser: id, id, email, password, profile: Profiles2.ROOT.codigo, name: "ROOT", numberPhone: 0, observacion: "ROOT" })
+            const user = new User({ myTopUser: id, id, email, password, profile: Profiles.ROOT.codigo, name: "ROOT", numberPhone: 0, observacion: "ROOT" })
             return user
         } catch (error) {
             throw error

@@ -5,7 +5,7 @@ import { KeyAppService } from "../../../shared/guard/application/guard-app";
 import { IEncript } from "../../../common/libs/encrypt/IEncrypts";
 import { IUserFindRepository } from "../../find/domain/user.find";
 import { IUserCreateRepository } from "../domain/user.create";
-import { Profiles2 } from "../../shared/user.profiles";
+import { Profiles } from "../../shared/user.profiles";
 import { User } from "../../shared/user";
 import { IUserCreateDTO } from "./dto";
 
@@ -46,7 +46,7 @@ export class UserCreateService {
 
     private async permiso(currentUser: User, profileToCreate : number) {
         const profileCurrent = currentUser.profile
-        const { ADMIN, BUYER, DISTRIBUTOR, ROOT } = Profiles2
+        const { ADMIN, BUYER, DISTRIBUTOR, ROOT } = Profiles
 
         if (ROOT.codigo == profileCurrent && profileToCreate == ADMIN.codigo) return
         if (ADMIN.codigo == profileCurrent && profileToCreate == DISTRIBUTOR.codigo) return
@@ -54,7 +54,7 @@ export class UserCreateService {
         throw new ErrorPermissionDenied()
     }
     private async validProfile(params: IUserCreateDTO) {
-        if (params.profile == Profiles2.ROOT.codigo) throw new ErrorUserRootAlreadyExist()
+        if (params.profile == Profiles.ROOT.codigo) throw new ErrorUserRootAlreadyExist()
         return
     }
 

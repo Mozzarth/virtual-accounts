@@ -4,7 +4,7 @@ import { EmailAddres } from "../../../shared/domain/valueobjects/email/emailaddr
 import { Uuid } from "../../../shared/domain/valueobjects/uuid";
 import { userFindMysql } from "../repository/user-find.mysql";
 import { IUserFindRepository } from "../domain/user.find";
-import { Profiles2 } from "../../shared/user.profiles";
+import { Profiles } from "../../shared/user.profiles";
 
 
 
@@ -43,7 +43,7 @@ export class UserFindService {
     async allUser(key: string) {
         try {
             const currentUser = await this.getCurrentUser(key)
-            if (currentUser.profile == Profiles2.ROOT.codigo) {
+            if (currentUser.profile == Profiles.ROOT.codigo) {
                 const user = await this.repository.all()
                 return user
             }
@@ -56,7 +56,7 @@ export class UserFindService {
     async profiles(key: string) {
         try {
             await this.getCurrentUser(key)
-            return Profiles2
+            return Profiles
         } catch (error) {
             throw error
         }
@@ -65,7 +65,7 @@ export class UserFindService {
     private async getCurrentUser(key: string) {
         try {
             const currentUser = await this.decodedKeyAPP.decodedKey(key)
-            if (currentUser.profile == Profiles2.ROOT.codigo || Profiles2.ADMIN.codigo) return currentUser
+            if (currentUser.profile == Profiles.ROOT.codigo || Profiles.ADMIN.codigo) return currentUser
             throw new ErrorPermissionDenied()
         } catch (error) {
             throw error
