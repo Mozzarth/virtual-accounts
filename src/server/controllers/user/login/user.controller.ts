@@ -1,6 +1,6 @@
-import { UserAuthentication } from "../../../../app/user/auth/application/user.auth";
-import { userAuthentication } from "../../../../app/user/auth/application";
-import { IUserLoginDTO } from "../../../../app/user/auth/application/dto";
+import { UserAuthentication } from "../../../../app/usecase/user/auth/application/user.auth";
+import { userAuthentication } from "../../../../app/usecase/user/auth/application";
+import { IUserLoginDTO } from "../../../../app/usecase/user/auth/application/dto";
 import { NextFunction, Request, Response } from "express";
 
 

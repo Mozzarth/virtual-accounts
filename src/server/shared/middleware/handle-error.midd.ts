@@ -1,4 +1,4 @@
-import { ErrorUserRootAlreadyExist } from "../../../app/user/delete/domain/user-exists.error"
+import { ErrorUserRootAlreadyExist } from "../../../app/usecase/user/delete/domain/user-exists.error"
 import { Request, Response, NextFunction} from "express"
 
 export function handleErrorMiddleware(error: Error, req: Request, res: Response, next: NextFunction) {

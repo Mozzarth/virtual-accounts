@@ -1,6 +1,6 @@
-import { UserCreateService } from "../../../../app/user/create/application/user.create";
-import { IUserCreateDTO } from "../../../../app/user/create/application/dto";
-import { userCreateService } from "../../../../app/user/create/application";
+import { UserCreateService } from "../../../../app/usecase/user/create/application/user.create";
+import { IUserCreateDTO } from "../../../../app/usecase/user/create/application/dto";
+import { userCreateService } from "../../../../app/usecase/user/create/application";
 import { NextFunction, Response, Request } from "express";
 
 

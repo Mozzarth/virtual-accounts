@@ -1,7 +1,7 @@
-import { UserRootCreateService } from "../../../../app/user/create-root/application/user.create-root";
+import { UserRootCreateService } from "../../../../app/usecase/user/create-root/application/user.create-root";
 import { NextFunction, Request, Response } from "express";
-import { IUserRootCreateDTO } from "../../../../app/user/create-root/application/dto";
-import { userRootCreateService } from "../../../../app/user/create-root/application";
+import { IUserRootCreateDTO } from "../../../../app/usecase/user/create-root/application/dto";
+import { userRootCreateService } from "../../../../app/usecase/user/create-root/application";
 
 
 class UserCreateRootController {

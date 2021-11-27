@@ -1,4 +1,4 @@
-import { userFindService, UserFindService } from "../../../../app/user/find/application/user.find";
+import { userFindService, UserFindService } from "../../../../app/usecase/user/find/application/user.find";
 import { Request, Response, NextFunction } from 'express'
 
 

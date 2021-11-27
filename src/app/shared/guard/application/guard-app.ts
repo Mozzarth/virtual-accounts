@@ -1,12 +1,12 @@
-import { UserNotExisteError } from "../../../user/shared/user-notexists.error"
-import { userFindMysql } from "../../../user/find/repository/user-find.mysql"
-import { IUserFindRepository } from "../../../user/find/domain/user.find"
+import { UserNotExisteError } from "../../../usecase/user/shared/user-notexists.error"
+import { userFindMysql } from "../../../usecase/user/find/repository/user-find.mysql"
+import { IUserFindRepository } from "../../../usecase/user/find/domain/user.find"
 import { EmailAddres } from "../../domain/valueobjects/email/emailaddres"
 import { JwtRepository } from "../../../common/libs/encoder/encoder.jwt"
 import { IEncoderAPP } from "../../../common/libs/encoder/IEncoder"
 import { IPayloadAPP } from "../../domain/IPayloadAPP"
 import { Uuid } from "../../domain/valueobjects/uuid"
-import { User } from "../../../user/shared/user"
+import { User } from "../../../usecase/user/shared/user"
 
 export class KeyAppService {
 

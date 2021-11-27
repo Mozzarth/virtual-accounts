@@ -1,5 +1,5 @@
-import { UserDeleteService } from "../../../../app/user/delete/application/user.delete";
-import { userDeleteService } from "../../../../app/user/delete/application";
+import { UserDeleteService } from "../../../../app/usecase/user/delete/application/user.delete";
+import { userDeleteService } from "../../../../app/usecase/user/delete/application";
 import { NextFunction, Response, Request } from "express";
 
 
