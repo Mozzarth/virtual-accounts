@@ -12,10 +12,10 @@ export class UserCreateRootMysql implements IUserRootCreateRepository {
     async handle(user: User): Promise<void> {
         const connection = await this.provider.getConnection();
         try {
-            const statament = `insert into users(idUser,email,password,profile,userCreate,name,numberPhone,observacion,myTopUser)
-                               values ( UUID_TO_BIN(?),?,?,?,UUID_TO_BIN(?),?,?,?,UUID_TO_BIN(?) )`;
-            const { id, email, password, profile, name, numberPhone, observacion,myTopUser } = user.toPrimitives()
-            await connection.query(statament, [id, email, password, profile, id, name, numberPhone, observacion,myTopUser])
+            const statament = `insert into users(idUser,email,password,profile,userCreate,name,numberPhone,observacion,myTopUser,keyReferred)
+                               values ( UUID_TO_BIN(?),?,?,?,UUID_TO_BIN(?),?,?,?,UUID_TO_BIN(?),? )`;
+            const { id, email, password, profile, name, numberPhone, observacion,myTopUser,keyReferred } = user.toPrimitives()
+            await connection.query(statament, [id, email, password, profile, id, name, numberPhone, observacion,myTopUser,keyReferred])
         } catch (error) {
             throw error
         } finally {

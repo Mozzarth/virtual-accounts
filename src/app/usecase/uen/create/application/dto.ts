@@ -1,8 +1,13 @@
-export type IUserCreateDTO = {
+
+export type IUENCreate = {
+    name : string
+}
+
+export type IUenUserCreateDTO = {
     email: string;
     nombre: string;
-    profile: number;
     password: string;
     numberPhone: number
     observacion: string;
+    businessUnits: string
 };

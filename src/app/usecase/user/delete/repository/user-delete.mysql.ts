@@ -1,7 +1,7 @@
 import { connectionMySql } from "../../../../shared/persistence/connection.mysql";
 import { SqlConnection } from "../../../../shared/persistence/IConnection";
 import { Uuid } from "../../../../shared/domain/valueobjects/uuid";
-import { IUserDeleteRepository } from "../domain/user.create";
+import { IUserDeleteRepository } from "../domain/user.delete";
 import { User } from "../../shared/user";
 
 
@@ -9,8 +9,9 @@ import { User } from "../../shared/user";
 export class UserDeleteMysql implements IUserDeleteRepository {
 
     constructor(private readonly provider: SqlConnection) { }
+    
 
-    async handle(id: Uuid,currentUser : User): Promise<void> {
+    async byId(id: Uuid,currentUser : User): Promise<void> {
         const connection = await this.provider.getConnection();
         try {
             const statament = `update users set

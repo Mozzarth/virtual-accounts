@@ -1,5 +1,5 @@
 import { KeyAppService, keyAppUseCase } from "../../../../shared/guard/application/guard-app";
-import { ErrorPermissionDenied } from "../../../../shared/errors/permission-denied.error";
+// import { ErrorPermissionDenied } from "../../../../shared/errors/permission-denied.error";
 import { EmailAddres } from "../../../../shared/domain/valueobjects/email/emailaddres";
 import { Uuid } from "../../../../shared/domain/valueobjects/uuid";
 import { userFindMysql } from "../repository/user-find.mysql";
@@ -47,6 +47,10 @@ export class UserFindService {
                 const user = await this.repository.all()
                 return user
             }
+            if (currentUser.profile == Profiles.UEN.codigo) {
+                const user = await this.repository.byUEN(currentUser.idUen.value)
+                return user
+            }
             const user = await this.repository.myUsers(currentUser)
             return user
         } catch (error) {
@@ -65,8 +69,10 @@ export class UserFindService {
     private async getCurrentUser(key: string) {
         try {
             const currentUser = await this.decodedKeyAPP.decodedKey(key)
-            if (currentUser.profile == Profiles.ROOT.codigo || Profiles.ADMIN.codigo) return currentUser
-            throw new ErrorPermissionDenied()
+            return currentUser
+            // const { ROOT, UEN, PROVEEDOR } = Profiles
+            // if (currentUser.profile == ROOT.codigo || UEN.codigo || PROVEEDOR.codigo) return currentUser
+            // throw new ErrorPermissionDenied()
         } catch (error) {
             throw error
         }

@@ -10,18 +10,14 @@ import { User } from "../../shared/user";
 
 export class UserFindMysql implements IUserFindRepository {
 
-    constructor(private readonly provider: SqlConnection) { }
-
-
-    async myUsers(currentUser : User): Promise<IUserFind[]> {
-        const connection = await this.provider.getConnection();
-        try {
-            const data = await connection.query(`
+    private readonly statament: string = `
                         SELECT
                             BIN_TO_UUID(idUSer) as idUser,
+                            BIN_TO_UUID(idUen) as idUen,
                             name,
                             numberPhone,
                             observacion,
+                            keyReferred,
                             email,
                             password,
                             profile,
@@ -30,7 +26,53 @@ export class UserFindMysql implements IUserFindRepository {
                             if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
                             if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
                             updateAt
-                        FROM users where active = 1 and BIN_TO_UUID(myTopUser) = ?;`, [currentUser.id.value])
+                        FROM users`
+
+    constructor(private readonly provider: SqlConnection) { }
+
+
+    async byUEN(businessCode: string): Promise<IUserFind[]> {
+        const connection = await this.provider.getConnection();
+        try {
+            const data = await connection.query<RowDataPacket[][]>(`
+                        ${this.statament}
+                        where active = 1
+                              and BIN_TO_UUID(idUen) = ?;`, [businessCode])
+            const result: any = data[0]
+            return result
+        } catch (error) {
+            throw error
+        } finally {
+            connection.release();
+        }
+    }
+
+
+
+    async byKeyReferred(key: string): Promise<IUserFind | undefined> {
+        const connection = await this.provider.getConnection();
+        try {
+            const data = await connection.query<RowDataPacket[][]>(`
+                        ${this.statament}
+                        where active = 1
+                              and keyReferred = ?;`, [key])
+            const result: any = data[0][0]
+            return (result as IUserFind | undefined)
+        } catch (error) {
+            throw error
+        } finally {
+            connection.release();
+        }
+    }
+
+
+    async myUsers(currentUser: User): Promise<IUserFind[]> {
+        const connection = await this.provider.getConnection();
+        try {
+            const data = await connection.query(`
+                        ${this.statament}
+                        where active = 1
+                              and BIN_TO_UUID(myTopUser) = ?;`, [currentUser.id.value])
             // console.log(data)
             const result = (data[0] as any)
             return result
@@ -45,22 +87,7 @@ export class UserFindMysql implements IUserFindRepository {
     async all(): Promise<IUserFind[]> {
         const connection = await this.provider.getConnection();
         try {
-            const data = await connection.query(`
-                        SELECT
-                            BIN_TO_UUID(idUSer) as idUser,
-                            email,
-                            password,
-                            name,
-                            numberPhone,
-                            observacion,
-                            profile,
-                            created,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
-                            if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
-                            if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
-                            updateAt
-                        FROM users where active = 1;`, [])
-            // console.log(data)
+            const data = await connection.query(`${this.statament} where active = 1;`, [])
             const result = (data[0] as any)
             return result
         } catch (error) {
@@ -72,24 +99,11 @@ export class UserFindMysql implements IUserFindRepository {
     async root(): Promise<IUserFind | undefined> {
         const connection = await this.provider.getConnection();
         try {
-            const data = await connection.query<RowDataPacket[][]>(`
-                        SELECT
-                            BIN_TO_UUID(idUSer) as idUser,
-                            email,
-                            name,
-                            numberPhone,
-                            observacion,
-                            password,
-                            profile,
-                            created,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
-                            if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
-                            if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
-                            updateAt
-                        FROM users where profile = ? and active = 1;`, [Profiles.ROOT.codigo])
+            const data = await connection
+                .query<RowDataPacket[][]>(`${this.statament} where profile = ? and active = 1;`,
+                    [Profiles.ROOT.codigo])
             const result: any = data[0][0]
             return (result as IUserFind | undefined)
-            return undefined
         } catch (error) {
             throw error
         } finally {
@@ -100,21 +114,9 @@ export class UserFindMysql implements IUserFindRepository {
         const connection = await this.provider.getConnection();
         try {
             const data = await connection.query<RowDataPacket[][]>(`
-                        SELECT
-                            BIN_TO_UUID(idUSer) as idUser,
-                            email,
-                            name,
-                            numberPhone,
-                            observacion,
-                            password,
-                            profile,
-                            created,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
-                            if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
-                            if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
-                            updateAt
-                        FROM users where idUSer = UUID_TO_BIN(?) and active = 1;`, [id.toString()])
+                        ${this.statament} where idUSer = UUID_TO_BIN(?) and active = 1;`, [id.toString()])
             const result: any = data[0][0]
+            // console.log({result})
             return (result as IUserFind | undefined)
         } catch (error) {
             throw error
@@ -126,20 +128,9 @@ export class UserFindMysql implements IUserFindRepository {
     async byEmail(email: EmailAddres): Promise<IUserFind | undefined> {
         const connection = await this.provider.getConnection();
         try {
-            const data = await connection.query<RowDataPacket[][]>(`SELECT
-                            BIN_TO_UUID(idUSer) as idUser,
-                            email,
-                            name,
-                            numberPhone,
-                            observacion,
-                            profile,
-                            password,
-                            created,
-                            BIN_TO_UUID(myTopUser) as myTopUser,
-                            if(isnull(userCreate)=1,null,BIN_TO_UUID(userCreate)) as userCreate,
-                            if(isnull(userUpdate)=1,null,BIN_TO_UUID(userUpdate)) as userUpdate,
-                            updateAt
-            FROM users where email = ? and active = 1;`, [email.toString()])
+            const data = await connection.query<RowDataPacket[][]>(`
+            ${this.statament} 
+            where email = ? and active = 1;`, [email.toString()])
             const result: any = data[0][0]
             return (result as IUserFind | undefined)
         } catch (error) {

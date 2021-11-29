@@ -7,7 +7,7 @@ import { userFindController as ctrlFind } from '../controllers/user/find/user.co
 import { userRootCreateMidd } from '../controllers/user/create-root/user.midd'
 import { userLoginCreateMidd as userLoginMidd } from '../controllers/user/login/user.midd'
 import { userDeleteMidd } from '../controllers/user/delete/user.midd'
-import { userCreateMidd } from '../controllers/user/create/user.midd'
+import { userRegisterMidd } from '../controllers/user/create/user.midd'
 import { Router } from 'express'
 
 const rt = Router()
@@ -15,7 +15,7 @@ const rt = Router()
 
 rt.post("/userRoot", userRootCreateMidd(), ctrlCreateRoot.handle.bind(ctrlCreateRoot))
 rt.post("/userAuth", userLoginMidd(), ctrlLogin.handle.bind(ctrlLogin))
-rt.post("/user", userCreateMidd(), ctrlCreate.handle.bind(ctrlCreate))
+rt.post("/user/register", userRegisterMidd(), ctrlCreate.handle.bind(ctrlCreate))
 rt.delete("/user/:id", userDeleteMidd(), ctrlDelete.handle.bind(ctrlDelete))
 
 rt.get("/users", userFindAllMidd(), ctrlFind.all.bind(ctrlFind))
