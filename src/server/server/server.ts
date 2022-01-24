@@ -1,8 +1,8 @@
 import express, { Application } from "express";
 import { CONFIG } from "../config/config";
-import https = require('https');
-import path = require('path');
-import fs = require('fs');
+// import https = require('https');
+// import path = require('path');
+// import fs = require('fs');
 
 export class Server {
 
@@ -25,21 +25,21 @@ export class Server {
     public async start(): Promise<void> {
         try {
             return new Promise((res, rej) => {
-                https.createServer({
-                    cert: fs.readFileSync(path.join(__dirname, "../config/Cert/localhost-cert.crt")),
-                    key: fs.readFileSync(path.join(__dirname, "../config/Cert/localhost-key.pem"))
-                }, this.app)
-                    .listen(Number(this.port), () => {
-                        console.log(`Server running on http://localhost:${this.port}`)
-                        res()
-                    })
+                // https.createServer({
+                //     cert: fs.readFileSync(path.join(__dirname, "../config/Cert/localhost-cert.crt")),
+                //     key: fs.readFileSync(path.join(__dirname, "../config/Cert/localhost-key.pem"))
+                // }, this.app)
+                //     .listen(Number(this.port), () => {
+                //         console.log(`Server running on http://localhost:${this.port}`)
+                //         res()
+                //     })
 
 
-                // this.app.listen(Number(this.port), () => {
-                //     // console.log(`Server running on http://${this.host}:${this.port}`)
-                //     console.log(`Server running on http://localhost:${this.port}`)
-                //     res()
-                // })
+                this.app.listen(Number(this.port), () => {
+                    // console.log(`Server running on http://${this.host}:${this.port}`)
+                    console.log(`Server running on http://localhost:${this.port}`)
+                    res()
+                })
             })
         } catch (error) { throw error }
     }

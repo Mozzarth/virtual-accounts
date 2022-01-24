@@ -2,6 +2,7 @@
 const CONFIG = {
     SECRET_ENCODER: process.env.NODE_APP_ENCODER || "",
     SECRET_SALT: process.env.NODE_APP_SALT || 10,
+    SECRET_FOR_ENCRYPTION: process.env.NODE_SECRET_FOR_ENCRYPTION || "default--secret--for--encrypt--and--decrypt--",
 
 
 

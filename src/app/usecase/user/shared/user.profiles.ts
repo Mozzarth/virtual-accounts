@@ -1,24 +1,41 @@
 import { ErrorPermissionDenied } from "../../../shared/errors/permission-denied.error"
 
-export const Profiles = {
+
+export enum UserProfile {
+    ROOT = 1,
+    UEN = 2,
+    PROVEEDOR = 3,
+    SRESELLER = 4,
+    RESELLER = 5
+}
+
+export interface IProfiles {
+    [id: string]: {
+        nombre: string,
+        codigo: UserProfile,
+    }
+}
+
+
+export const Profiles: IProfiles = {
     ROOT: {
-        codigo: 1,
+        codigo: UserProfile.ROOT,
         nombre: "Root"
     },
     UEN: {
-        codigo: 2,
+        codigo: UserProfile.UEN,
         nombre: "Unidad de negocio"
     },
     PROVEEDOR: {
-        codigo: 3,
+        codigo: UserProfile.PROVEEDOR,
         nombre: "Proveedor"
     },
     SRESELLER: {
-        codigo: 4,
+        codigo: UserProfile.SRESELLER,
         nombre: "Super reseller"
     },
     RESELLER: {
-        codigo: 5,
+        codigo: UserProfile.RESELLER,
         nombre: "Reseller"
     }
 }

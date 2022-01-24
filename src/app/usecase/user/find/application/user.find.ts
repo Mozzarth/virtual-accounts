@@ -70,9 +70,6 @@ export class UserFindService {
         try {
             const currentUser = await this.decodedKeyAPP.decodedKey(key)
             return currentUser
-            // const { ROOT, UEN, PROVEEDOR } = Profiles
-            // if (currentUser.profile == ROOT.codigo || UEN.codigo || PROVEEDOR.codigo) return currentUser
-            // throw new ErrorPermissionDenied()
         } catch (error) {
             throw error
         }

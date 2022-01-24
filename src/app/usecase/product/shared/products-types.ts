@@ -1,11 +1,22 @@
+export enum ProductsTypesEnum {
+    COUPON = 1,
+    CREDENTIALS = 2
+}
 
-export const ProductsTypes = {
-    COUPON : {
-        codigo : 1,
-        nombre : "cupon" 
+export interface IProductsTypes {
+    [id: string]: {
+        nombre: string,
+        codigo: ProductsTypesEnum,
+    }
+}
+
+export const ProductsTypes: IProductsTypes = {
+    COUPON: {
+        codigo: ProductsTypesEnum.COUPON,
+        nombre: "Cupon"
     },
-    CREDENTIALS : {
-        codigo: 2,
-        nombre: "credenciales"
+    CREDENTIALS: {
+        codigo: ProductsTypesEnum.CREDENTIALS,
+        nombre: "Credenciales"
     }
 }

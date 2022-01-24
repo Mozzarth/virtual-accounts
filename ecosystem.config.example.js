@@ -8,6 +8,7 @@ module.exports = {
       watch: false,
       env: {
         NODE_APP_ENCODER: "mysecretjwt",
+        SECRET_FOR_ENCRYPTION: "SECRET_FOR_ENCRYPTION-default",
         SECRET_SALT: 12,
 
         NODE_DB_HOST: "127.0.0.1",
