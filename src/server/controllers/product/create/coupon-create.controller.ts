@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 
 
-class ProductCouponCreaterepository {
+class ProductCouponCreateController {
 
 
     constructor(private readonly service: ProductCouponCreateService) { }
@@ -22,5 +22,5 @@ class ProductCouponCreaterepository {
 
 }
 
-const productCouponCreaterepository = new ProductCouponCreaterepository(productCouponCreate)
-export { productCouponCreaterepository}
+const productCouponCreateController = new ProductCouponCreateController(productCouponCreate)
+export { productCouponCreateController }

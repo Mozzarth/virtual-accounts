@@ -4,7 +4,7 @@ import { SqlConnection } from "../../../../shared/persistence/IConnection";
 import { IUserFind, IUserFindRepository } from "../domain/user.find";
 import { Uuid } from "../../../../shared/domain/valueobjects/uuid";
 import { Profiles } from "../../shared/user.profiles";
-import { RowDataPacket } from "mysql2/promise";
+import { RowDataPacket } from "mysql2";
 import { User } from "../../shared/user";
 
 

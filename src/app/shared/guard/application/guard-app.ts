@@ -26,7 +26,6 @@ export class KeyAppService {
            const user = await this.repository.byId(id)
            if (user == undefined) throw new NotExisteError("User not exists")
            const { name, profile, password, email, numberPhone, observacion, idUser, myTopUser, idUen } = user
-        //    if (idUen == undefined) throw new Error("Error al identificar uen de un usuario")
            let idUen_ = idUen  ? new Uuid(idUen) : undefined
            const paramsUser: IParamsUser = {
                id: new Uuid(idUser), myTopUser: new Uuid(myTopUser), email: new EmailAddres(email),

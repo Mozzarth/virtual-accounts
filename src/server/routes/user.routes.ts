@@ -26,4 +26,4 @@ rt.get("/user/:id", userFindByIdMidd(), ctrlFind.byId.bind(ctrlFind))
 
 // userAuthentication
 
-export { rt as userRT }
+export { rt as rtUser }

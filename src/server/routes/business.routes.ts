@@ -7,5 +7,5 @@ const rt = Router()
 
 rt.post("/business", businessCreateMidd(), crtlCrear.handle.bind(crtlCrear))
 
-export { rt as businessRT }
+export { rt as rtBusiness }
 

@@ -28,7 +28,7 @@ export class UserAuthentication {
             if (!validCredential) throw new UserCredentialInvalid()
             const key = await this.decodedKeyAPP.getKey({ id: user.idUser })
             const infoUser = await this.repository.byId(new Uuid(user.idUser))
-            return { key, user: infoUser}
+            return { key, user: infoUser }
         } catch (error) {
             throw error
         }
