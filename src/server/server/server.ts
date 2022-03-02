@@ -30,7 +30,7 @@ export class Server {
                 //     key: fs.readFileSync(path.join(__dirname, "../config/Cert/localhost-key.pem"))
                 // }, this.app)
                 //     .listen(Number(this.port), () => {
-                //         console.log(`Server running on http://localhost:${this.port}`)
+                //         console.log(`Server running on https://localhost:${this.port}`)
                 //         res()
                 //     })
 
