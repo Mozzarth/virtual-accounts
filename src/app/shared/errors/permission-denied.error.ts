@@ -1,5 +1,5 @@
 export class ErrorPermissionDenied extends Error {  
-    constructor(){
-        super("No tiene permitido realizar esta acción")
+    constructor(message ?: string){
+        super(message ? message : "No tiene permitido realizar esta acción")
     }
 }
