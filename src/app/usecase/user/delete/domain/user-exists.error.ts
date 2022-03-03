@@ -5,7 +5,7 @@ export class ErrorUserAlreadyExist extends Error {
     
     // public readonly name : string
     constructor(){
-        super()
+        super("Este usuario ya existe")
         // this.name = "ErrorUserAlreadyExist"
     }
 }
